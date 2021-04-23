@@ -48,8 +48,7 @@ class License extends SerialManager
             {
                 return (object)['active' => false,'message' => "Serial Number is Disabled"];
             }
-
-             return (object)['active' => true,'message' => "Serial Number is valid"];
+             return (object)['active' => true, 'expired' => ['status' => $this->expired($this->serial), 'date' => $this->expiredDate($this->serial)], 'message' => "Serial Number is valid till ". $this->expiredDate($this->serial)];
         } else{
             return (object)['active' => false,'message' => "Serial Number invalid"];
         }

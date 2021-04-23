@@ -112,6 +112,15 @@ class SerialManager extends SerialGenerator
 
         }
         $return['message'] = "Renew serial number Failed because serial number not exists.";
-         return $return;
+        return $return;
     }
+
+    protected function expiredDate($sn)
+    {
+        $sn = LicenseSerial::where('serial',$sn);
+        $return = $sn->first()->expired;
+        $result = date("Y-m-d, H:m:s",$return);
+        return $result;
+    }
+
 }
